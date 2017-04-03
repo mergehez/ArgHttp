@@ -8,8 +8,11 @@ Builds: [![](https://camo.githubusercontent.com/118d9756ddf9796f391d9aded4502085
 
 To always build from the latest commit with all updates. Add the JitPack repository:
 ```
-repositories {
-    maven { url "https://jitpack.io" }
+allprojects {
+    repositories {
+        ...other repositories...
+        maven { url 'https://jitpack.io' }
+    }
 }
 ```
 And the dependency:
