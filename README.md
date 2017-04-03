@@ -15,8 +15,8 @@ repositories {
 And the dependency:
 
 ```
-	dependencies {
-	        compile 'com.github.mergehez:ArgHttp:master-SNAPSHOT'
-	}
+dependencies {
+    compile 'com.github.mergehez:ArgHttp:master-SNAPSHOT'
+}
 
 ```
