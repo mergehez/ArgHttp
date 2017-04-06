@@ -28,7 +28,7 @@ dependencies {
 
 Usage of this library is very simple. By typing one function, you can send server request, you can post data to server and you can retrieve data by posting data to server. The use of these three functions is as follows:
     
-Server request:
+### Server request:
     
 ```
 new ArgHttp().get(urlGet, serverSideErrorText, new CallGisti() {
@@ -51,7 +51,7 @@ Parameters:
 
 ----------
 
-Post:
+### Post:
     
 ```
 PostValues pvs = new PostValues().add("book-title","Book1").add("book-author","Mergehez");
@@ -75,7 +75,7 @@ Parameters:
 
 ----------
 
-Post and Get Response:
+### Post and Get Response:
     
 ```
 PostValues pvs = new PostValues().add("book-author","Mergehez");
