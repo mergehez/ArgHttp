@@ -7,6 +7,8 @@ Builds: [![](https://camo.githubusercontent.com/118d9756ddf9796f391d9aded4502085
 # Gradle
 
 To always build from the latest commit with all updates. Add the JitPack repository:
+
+(path:\to\your\projects\MainFolderOfYourProject\build.gradle)
 ```
 allprojects {
     repositories {
@@ -15,8 +17,9 @@ allprojects {
     }
 }
 ```
-And the dependency:
+And the dependency to (app) build.gradle:
 
+(path:\to\your\projects\MainFolderOfYourProject\app\build.gradle)
 ```
 dependencies {
     compile 'com.github.mergehez:ArgHttp:master-SNAPSHOT'
