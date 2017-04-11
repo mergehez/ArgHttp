@@ -1,147 +1,101 @@
-# ArgPlayer
+# ArgHttp
 
-An android music player ui library with easy usage.
+An android http library with less code.
 
-Builds: [![](https://jitpack.io/v/mergehez/ArgPlayer.svg)](https://jitpack.io/#mergehez/ArgPlayer)
+Builds: [![](https://camo.githubusercontent.com/118d9756ddf9796f391d9aded450208550090913/68747470733a2f2f6a69747061636b2e696f2f762f4861617269676572486172616c642f616e64726f69642d796f7574756265457874726163746f722e737667)](https://jitpack.io/#mergehez/ArgHttp/master-SNAPSHOT&summary=true)
 
-## Table Of Contents
-[TOC]
+# Gradle
 
-## Gradle
 To always build from the latest commit with all updates. Add the JitPack repository:
 
 (path:\to\your\projects\MainFolderOfYourProject\build.gradle)
 ```
-repositories {
-    maven { url "https://jitpack.io" }
+allprojects {
+    repositories {
+        ...other repositories...
+        maven { url 'https://jitpack.io' }
+    }
 }
 ```
-And the dependency:
+And the dependency to (app) build.gradle:
 
+(path:\to\your\projects\MainFolderOfYourProject\app\build.gradle)
 ```
 dependencies {
-	compile 'com.github.mergehez:ArgPlayer:master-SNAPSHOT'
+    compile 'com.github.mergehez:ArgHttp:master-SNAPSHOT'
 }
+
 ```
 
+# How to use
 
-## How to use
-
-### XML Codes
-for small view:
-```xml
-<com.arges.sepan.argmusicplayer.PlayerViews.ArgPlayerSmallView
-	android:id="@+id/argmusicplayer"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"/>
+Usage of this library is very simple. By typing one function, you can send server request, you can post data to server and you can retrieve data by posting data to server. The use of these three functions is as follows:
+    
+### Server request:
+    
 ```
-for large view:
-```xml
-<com.arges.sepan.argmusicplayer.PlayerViews.ArgPlayerLargeView
-        android:id="@+id/argmusicplayer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-```
-for full screen view:
-```xml
-<com.arges.sepan.argmusicplayer.PlayerViews.ArgPlayerFullScreenView
-            android:id="@+id/argmusicplayer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+new ArgHttp().get(urlGet, serverSideErrorText, new CallGisti() {
+    @Override
+    public void agahi(ArgHttp context, String response) {
+        // Check if there is an error
+        if(context.isError()){
+            // Display error message
+        }else{
+            // Parse the response. You can look at my sample application to understand better
+        }
+    }
+});
 ```
 
-----
-### Java Codes
-#### Simplest Usage
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-	...
-	String url = "https://mergesoft.org/caruso.mp3";
-	ArgAudio audio = new ArgAudio("Andrea Bocelli","Caruso",url,AudioType.URL)
-	ArgPlayerSmallView argMusicPlayer = (ArgPlayerSmallView) findViewById(R.id.argmusicplayer);
-	argMusicPlayer.play(audio);
-	...
-}
+Parameters:
+- urlGet: url of the script that you want to get data from
+- serverSideErrorText: you should check errors on server side, if an error occures you should print a specific text. You will define this text in this parameter.
+- CallGisti: is an interface that bring the response of server
+
+----------
+
+### Post:
+    
 ```
-----
+PostValues pvs = new PostValues().add("book-title","Book1").add("book-author","Mergehez");
+new ArgHttp().post(urlPost, serverSideErrorText, pvs, new CallGisti() {
+    @Override
+    public void agahi(ArgHttp context, String response) {
+        if(context.isError()){
+            // Display error message
+        }else{
+            // Display the "successfully executed" or 'anything else' message
+        }
+    }
+});
+```
 
+Parameters:
+- urlPost: url of the script that you want to post the data to
+- serverSideErrorText: you should check errors on server side, if an error occures you should print a specific text. You will define this text in this parameter.
+- pvs: is your posted data. It a PostValues variable. Look at the above code line to understand better.
+- CallGisti: is an interface that bring the response of server
 
+----------
 
-#### All Methods
-| Return | Method |
-| --- |---|
-| void |`play(ArgAudio audio)` <br>Directly play an audio|
-| void |`playPlaylist(ArgAudioList list)` <br>Directly play a playlist|
-| void |`loadSingleAudio(ArgAudio audio)` <br>Load an audio to play later|
-| void |`playLoadedSingleAudio()` <br>Play the loaded audio if exists|
-| void |`loadPlaylist(ArgAudioList list)` <br>Load a playlist to play later|
-| void |`playLoadedPlaylist()` <br>Play the loaded playlist if exists|
-| void |`pause()` <br>Pause a playing audio|
-| void |`stop()` <br>Stop audio|
-| void |`seekTo(int millisec)` <br>Seek audio to the specified millisecond|
-| ArgAudio |`getCurrentAudio()` <br>Get the current audio if available|
-| long|`getDuration()` <br>Get duration of current audio|
-| boolean|`isPlaying()` <br>Check if an audio is playing|
-| boolean|`isPaused()` <br>Check if an audio is paused|
-| void |`playAudioAfterPercent(int percent)` <br>Audio will plays after %`percent` buffered. Only when audio type is Url. Default percent is **%50**. | 
-| void |`enableProgress()` and `disableProgress()` <br> Enable/Disable Progress View. Default is **enableProgress()** method|
-| void |`setProgressMessage(String message)` <br> Change Progress View message. Default message is **'Audio is Loading..'**|
-| void |`enableErrorView()` and `disableErrorView()` <br>Enable/Disable Error View. Error view appears when an error has occured. Defaultly is **enabled** |
-| void |`enableNextPrevButtons()`and `disableNextPrevButtons()` <br> Use can disable next/previous playback control but Defaultly is **enabled**|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
-| void |`()` <br>|
+### Post and Get Response:
+    
+```
+PostValues pvs = new PostValues().add("book-author","Mergehez");
+new ArgHttp().postAndGet(urlPost, serverSideErrorText, pvs, new CallGisti() {
+    @Override
+    public void agahi(ArgHttp context, String response) {
+        if(context.isError()){
+            // Display error message
+        }else{
+            // Parse the response. You can look at my sample application to understand better
+        }
+    }
+});
+```
 
-
-
-
-
-
-
-
-
-
-## ScreenShots
+Parameters:
+- urlPost: url of the script that you want to post the data to
+- serverSideErrorText: you should check errors on server side, if an error occures you should print a specific text. You will define this text in this parameter.
+- pvs: is your posted data. It a PostValues variable. Look at the above code line to understand better.
+- CallGisti: is an interface that bring the response of server
