@@ -9,7 +9,7 @@ Builds: [![](https://camo.githubusercontent.com/118d9756ddf9796f391d9aded4502085
 To always build from the latest commit with all updates. Add the JitPack repository:
 
 (path:\to\your\projects\MainFolderOfYourProject\build.gradle)
-```
+```xml
 allprojects {
     repositories {
         ...other repositories...
@@ -20,7 +20,7 @@ allprojects {
 And the dependency to (app) build.gradle:
 
 (path:\to\your\projects\MainFolderOfYourProject\app\build.gradle)
-```
+```xml
 dependencies {
     compile 'com.github.mergehez:ArgHttp:master-SNAPSHOT'
 }
@@ -33,7 +33,7 @@ Usage of this library is very simple. By typing one function, you can send serve
     
 ### Server request:
     
-```
+```java
 new ArgHttp().get(urlGet, serverSideErrorText, new CallGisti() {
     @Override
     public void agahi(ArgHttp context, String response) {
@@ -56,7 +56,7 @@ Parameters:
 
 ### Post:
     
-```
+```java
 PostValues pvs = new PostValues().add("book-title","Book1").add("book-author","Mergehez");
 new ArgHttp().post(urlPost, serverSideErrorText, pvs, new CallGisti() {
     @Override
@@ -80,7 +80,7 @@ Parameters:
 
 ### Post and Get Response:
     
-```
+```java
 PostValues pvs = new PostValues().add("book-author","Mergehez");
 new ArgHttp().postAndGet(urlPost, serverSideErrorText, pvs, new CallGisti() {
     @Override
