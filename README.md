@@ -19,9 +19,9 @@ repositories {
 And the dependency:
 
 ```
-	dependencies {
-	        compile 'com.github.mergehez:ArgPlayer:master-SNAPSHOT'
-	}
+dependencies {
+	compile 'com.github.mergehez:ArgPlayer:master-SNAPSHOT'
+}
 ```
 
 
@@ -30,21 +30,21 @@ And the dependency:
 ### XML Codes
 for small view:
 ```xml
-    <com.arges.sepan.argmusicplayer.PlayerViews.ArgPlayerSmallView
-        android:id="@+id/argmusicplayer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+<com.arges.sepan.argmusicplayer.PlayerViews.ArgPlayerSmallView
+	android:id="@+id/argmusicplayer"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"/>
 ```
 for large view:
 ```xml
-    <com.arges.sepan.argmusicplayer.PlayerViews.ArgPlayerLargeView
+<com.arges.sepan.argmusicplayer.PlayerViews.ArgPlayerLargeView
         android:id="@+id/argmusicplayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 ```
 for full screen view:
 ```xml
- <com.arges.sepan.argmusicplayer.PlayerViews.ArgPlayerFullScreenView
+<com.arges.sepan.argmusicplayer.PlayerViews.ArgPlayerFullScreenView
             android:id="@+id/argmusicplayer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -54,23 +54,23 @@ for full screen view:
 ### Java Codes
 #### Simplest Usage
 ```java
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		...
-	    String url = "https://mergesoft.org/caruso.mp3";
-	    ArgAudio audio = new ArgAudio("Andrea Bocelli","Caruso",url,AudioType.URL)
-	    ArgPlayerSmallView argMusicPlayer = (ArgPlayerSmallView) findViewById(R.id.argmusicplayer);
-	    argMusicPlayer.play(audio);
-	    ...
-    }
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	...
+	String url = "https://mergesoft.org/caruso.mp3";
+	ArgAudio audio = new ArgAudio("Andrea Bocelli","Caruso",url,AudioType.URL)
+	ArgPlayerSmallView argMusicPlayer = (ArgPlayerSmallView) findViewById(R.id.argmusicplayer);
+	argMusicPlayer.play(audio);
+	...
+}
 ```
 ----
 
 
 
 #### All Methods
-| Return | Command |
-| --- |---| --- |
+| Return | Method |
+| --- |---|
 | void |`play(ArgAudio audio)` <br>Directly play an audio|
 | void |`playPlaylist(ArgAudioList list)` <br>Directly play a playlist|
 | void |`loadSingleAudio(ArgAudio audio)` <br>Load an audio to play later|
