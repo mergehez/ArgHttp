@@ -1,6 +1,7 @@
 package com.arges.sepan.arghttp;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -97,8 +98,8 @@ public class ArgHttp {
             HttpPost httpPost = new HttpPost(url);
             try {
                 httpPost.setEntity(new UrlEncodedFormEntity(dataToSend));
-                String result = new String(EntityUtils.toString(client.execute(httpPost).getEntity()).getBytes("ISO-8859-1"), "UTF-8");
-                //Log.d("ArgHttp","PostBine result: "+ result);
+                String result = EntityUtils.toString(client.execute(httpPost).getEntity(), HTTP.UTF_8);
+                Log.d("ArgHttp","PostBine result: "+ result);
                 if(result.equals(ArgHttp.this.serverErrTxt))
                     return new Result(Result.Type.ERROR_SERVER,"");
                 else
@@ -141,7 +142,7 @@ public class ArgHttp {
                 List<NameValuePair> nameValuePairs = new ArrayList<>();
                 for(PostValue p : postValues.list)   nameValuePairs.add(new BasicNameValuePair(p.getKey(), p.getValue()));
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, HTTP.UTF_8));
-                String result = new String(EntityUtils.toString(client.execute(httppost).getEntity()).getBytes("ISO-8859-1"), "UTF-8");
+                String result = EntityUtils.toString(client.execute(httppost).getEntity(), HTTP.UTF_8);
                 if(result.equals(ArgHttp.this.serverErrTxt))
                     return new Result(Result.Type.ERROR_SERVER,"");
                 else
@@ -182,8 +183,8 @@ public class ArgHttp {
             HttpClient client = getClient();
             HttpPost httpPost = new HttpPost(url);
             try {
-                String result = new String(EntityUtils.toString(client.execute(httpPost).getEntity()).getBytes("ISO-8859-1"), "UTF-8");
-                //Log.d("JSONRESULT: ", result);
+                String result = EntityUtils.toString(client.execute(httpPost).getEntity(), HTTP.UTF_8);
+                Log.d("JSONRESULT: ", result);
                 if(result.equals(ArgHttp.this.serverErrTxt))
                     return new Result(Result.Type.ERROR_SERVER,"");
                 else
